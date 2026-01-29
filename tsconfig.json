@@ -22,10 +22,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".", 
     "paths": {
-      "@generated/*": ["generated/*"],
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "generated/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }

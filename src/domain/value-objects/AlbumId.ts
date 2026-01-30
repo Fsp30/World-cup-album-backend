@@ -23,7 +23,7 @@ export class AlbumId {
     return this.value === other.value;
   }
 
-  toSring(): string {
+  toString(): string {
     return this.value;
   }
 }

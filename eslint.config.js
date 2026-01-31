@@ -2,6 +2,8 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
+import jestPlugin from 'eslint-plugin-jest';
+import globals from 'globals';
 
 export default [
   {
@@ -17,11 +19,15 @@ export default [
   ...tseslint.configs.recommended,
   prettierConfig,
   {
-    files: ['src/**/*.ts'],
+    files: ['src/**/*.ts', '**/*.test.ts'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
       parser: tseslint.parser,
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
       parserOptions: {
         projectService: true,
         tsconfigRootDir: import.meta.dirname,
@@ -30,6 +36,7 @@ export default [
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       prettier: prettier,
+      jest: jestPlugin
     },
     rules: {
       'prettier/prettier': 'error',
@@ -42,6 +49,7 @@ export default [
         },
       ],
       '@typescript-eslint/no-explicit-any': 'warn',
+      ...jestPlugin.configs.recommended.rules
     },
   },
 ];

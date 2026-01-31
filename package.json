@@ -8,13 +8,13 @@
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
 		"test:watch": "npm test -- --watch",
 		"test:coverage": "npm test -- --coverage",
-		"dev": "tsx watch apps/index.ts",
-		"build": "tsup apps/index.ts --format esm --dts --clean",
+		"dev": "tsx watch src/index.ts",
+		"build": "tsup src/index.ts --format esm --dts --clean",
 		"start": "node dist/index.js",
 		"lint": "eslint . --ext .ts",
 		"lint:fix": "eslint . --ext .ts --fix",
-		"format": "prettier --write \"apps/**/*.ts\"",
-		"format:check": "prettier --check \"apps/**/*.ts\""
+		"format": "prettier --write \"src/**/*.ts\"",
+		"format:check": "prettier --check \"src/**/*.ts\""
 	},
 	"repository": {
 		"type": "git",

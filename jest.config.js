@@ -2,6 +2,7 @@ import { createDefaultPreset } from "ts-jest";
 
 const tsJestTransformCfg = createDefaultPreset({
   useESM: true,
+  tsconfig: 'tsconfig.json',
 }).transform;
 
 /** @type {import("jest").Config} **/
@@ -12,6 +13,9 @@ export default {
     ...tsJestTransformCfg,
   },
   moduleNameMapper: {
+
+    '^@/(.*)$': '<rootDir>/src/$1',
+ 
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
 };

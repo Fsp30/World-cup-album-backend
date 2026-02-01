@@ -1,29 +1,12 @@
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
+import { Id } from './Id';
 
-export class AlbumId {
-  private constructor(public readonly value: string) {
-    this.validate();
-  }
-
+export class AlbumId extends Id {
   static create(value?: string): AlbumId {
     return new AlbumId(value ?? randomUUID());
   }
 
   static fromString(value: string): AlbumId {
     return new AlbumId(value);
-  }
-
-  private validate(): void {
-    if (!this.value || this.value.trim().length === 0) {
-      throw new Error('AlbumId não pode ser vazio.');
-    }
-  }
-
-  equals(other: AlbumId): boolean {
-    return this.value === other.value;
-  }
-
-  toString(): string {
-    return this.value;
   }
 }

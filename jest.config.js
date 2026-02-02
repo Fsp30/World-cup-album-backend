@@ -12,6 +12,15 @@ export default {
   transform: {
     ...tsJestTransformCfg,
   },
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov', 'html'],
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.test.ts',
+    '!src/**/index.ts',
+    '!src/__tests__/**',
+  ],
   moduleNameMapper: {
 
     '^@/(.*)$': '<rootDir>/src/$1',

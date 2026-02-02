@@ -52,4 +52,10 @@ export default [
       ...jestPlugin.configs.recommended.rules
     },
   },
+  {
+    files: ['**/utils/tests/IdBaseUtils.ts'],
+    rules: {
+      'jest/no-export': 'off' 
+    }
+  }
 ];

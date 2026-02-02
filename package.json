@@ -11,8 +11,8 @@
 		"dev": "tsx watch src/index.ts",
 		"build": "tsup src/index.ts --format esm --dts --clean",
 		"start": "node dist/index.js",
-		"lint": "eslint . --ext .ts",
-		"lint:fix": "eslint . --ext .ts --fix",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"format:check": "prettier --check \"src/**/*.ts\""
 	},
@@ -30,6 +30,7 @@
 	"devDependencies": {
 		"@eslint/js": "^9.39.2",
 		"@jest/globals": "^30.2.0",
+		"@types/jest": "^30.0.0",
 		"@types/node": "^25.1.0",
 		"eslint": "^9.39.2",
 		"eslint-config-prettier": "^10.1.8",

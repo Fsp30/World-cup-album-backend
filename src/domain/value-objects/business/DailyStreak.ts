@@ -8,7 +8,7 @@ export class DailyStreak {
 
     public readonly MAX_REWARD_FOR_STREAK: number = 500,
     public readonly HIGH_REWARD_FOR_STREAK: number = 300,
-    public readonly AVERAGE_REWARD_FOR_STREAK: number = 500,
+    public readonly AVERAGE_REWARD_FOR_STREAK: number = 150,
     public readonly MIN_REWARD_FOR_STREAK: number = 50
   ) {
     this.validate();

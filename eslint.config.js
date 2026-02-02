@@ -53,7 +53,7 @@ export default [
     },
   },
   {
-    files: ['**/__tests__/**/IdBaseUtils.ts'],
+    files: ['**/utils/tests/IdBaseUtils.ts'],
     rules: {
       'jest/no-export': 'off' 
     }

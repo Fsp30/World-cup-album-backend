@@ -31,6 +31,18 @@ describe('DailyStreak Value Object', () => {
         'Sequencia atual não pode ser maior que a sequencia mais longa'
       );
     });
+
+    it('deve lançar um erro se a streak atual for negatica', () => {
+      expect(() => DailyStreak.create(-3, 10)).toThrow(
+        'Sequencia atual não pode ser negativa'
+      );
+    });
+
+    it('deve lançar um erro se a streak mais longa for negatica', () => {
+      expect(() => DailyStreak.create(4, -1)).toThrow(
+        'Sequencia mais longa não pode ser negativa'
+      );
+    });
   });
 
   describe('Lógica de Login e Sequência', () => {
@@ -78,6 +90,11 @@ describe('DailyStreak Value Object', () => {
 
       const diamond = DailyStreak.create(31, 31);
       expect(diamond.getStreakBonus()).toBe(diamond.MAX_REWARD_FOR_STREAK);
+    });
+
+    it('deve retornar o valor zero quando a sequência de dias for menor que 3', () => {
+      const streakUnderThree = DailyStreak.create(2, 5);
+      expect(streakUnderThree.getStreakBonus()).toBe(0);
     });
   });
 

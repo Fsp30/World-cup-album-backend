@@ -5,11 +5,17 @@ export class Credits {
 
   private validate(): void {
     if (this.amount < 0) {
-      throw new Error('Créditos não podem ser negativos');
+      throw new Error('Créditos insuficientes para esta operação');
+    }
+    if (!Number.isFinite(this.amount)) {
+      throw new Error('Créditos devem ser um número inteiro');
+    }
+    if (!Number.isInteger(this.amount)) {
+      throw new Error('Créditos devem ser um número inteiro');
     }
   }
 
-  static create(amount: number): Credits {
+  static create(amount: number = 0): Credits {
     return new Credits(amount);
   }
 
@@ -51,8 +57,8 @@ export class Credits {
 
   toJSON() {
     return {
-      formated: this.format(),
-      amount: this.amount,
+        amount: this.amount,
+        formatted: this.format(),
     };
   }
 }

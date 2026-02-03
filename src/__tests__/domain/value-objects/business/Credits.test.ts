@@ -1,5 +1,5 @@
+import { Credits } from '@/domain/value-objects';
 import { describe, it, expect } from '@jest/globals';
-// import { Credits } from '@/domain/value-objects/Credits';
 
 describe('Credits Value Object', () => {
   describe('Criação e Validação', () => {

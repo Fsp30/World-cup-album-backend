@@ -1,29 +1,12 @@
 import { randomUUID } from 'crypto';
+import { Id } from './Id';
 
-export class UserId {
-  private constructor(public readonly value: string) {
-    this.validate();
-  }
-
+export class UserId extends Id {
   static create(value?: string): UserId {
     return new UserId(value ?? randomUUID());
   }
 
   static fromString(value: string): UserId {
     return new UserId(value);
-  }
-
-  private validate(): void {
-    if (!this.value || this.value.trim().length === 0) {
-      throw new Error('UserId não pode ser vazio!');
-    }
-  }
-
-  equals(other: UserId): boolean {
-    return this.value === other.value;
-  }
-
-  toString(): string {
-    return this.value;
   }
 }

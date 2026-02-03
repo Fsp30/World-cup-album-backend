@@ -52,12 +52,14 @@ export class Credits {
         return `${this.amount.toLocaleString('pt-BR')} créditos`;
     } 
         
-        toString(): string { 
-            return this.amount.toString(); 
-        } toJSON() { 
-            return { 
-                amount: this.amount,
-                formatted: this.format(), 
-            }; 
-        } 
-    }
+    toString(): string { 
+        return this.amount.toString(); 
+    } 
+            
+    toJSON() { 
+        return { 
+            amount: this.amount,
+            formatted: this.format(), 
+        }; 
+    } 
+}

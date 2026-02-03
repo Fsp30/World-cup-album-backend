@@ -5,7 +5,7 @@ describe('CardRarity Value Object', () => {
   describe('Criação e Atributos', () => {
     it('deve criar uma raridade válida com os valores corretos', () => {
       const rarity = CardRarity.create(RarityLevel.LEGENDARY);
-      
+
       expect(rarity.level).toBe(RarityLevel.LEGENDARY);
       expect(rarity.getDropRate()).toBe(1);
       expect(rarity.getSaleValue()).toBe(5000);
@@ -17,20 +17,22 @@ describe('CardRarity Value Object', () => {
     });
 
     it('deve lançar erro para string de raridade inválida', () => {
-      expect(() => CardRarity.fromString('MYTHIC')).toThrow('Raridade inválida: MYTHIC');
+      expect(() => CardRarity.fromString('MYTHIC')).toThrow(
+        'Raridade inválida: MYTHIC'
+      );
     });
   });
 
   describe('Lógica de Probabilidade (Random)', () => {
     it('deve retornar COMMON quando o sorteio for 40 (dentro dos 50%)', () => {
-      jest.spyOn(Math, 'random').mockReturnValue(0.4); 
+      jest.spyOn(Math, 'random').mockReturnValue(0.4);
       const rarity = CardRarity.random();
       expect(rarity.level).toBe(RarityLevel.COMMON);
       jest.restoreAllMocks();
     });
 
     it('deve retornar LEGENDARY quando o sorteio for 99.5 (último 1%)', () => {
-      jest.spyOn(Math, 'random').mockReturnValue(0.995); 
+      jest.spyOn(Math, 'random').mockReturnValue(0.995);
       const rarity = CardRarity.random();
       expect(rarity.level).toBe(RarityLevel.LEGENDARY);
       jest.restoreAllMocks();
@@ -64,7 +66,7 @@ describe('CardRarity Value Object', () => {
       expect(rarity.toJSON()).toEqual({
         level: RarityLevel.EPIC,
         dropRate: 4,
-        saleValue: 800
+        saleValue: 800,
       });
     });
   });

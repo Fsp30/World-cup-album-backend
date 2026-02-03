@@ -10,7 +10,7 @@ describe('DuelResult Value Object', () => {
   describe('Criação e Validação', () => {
     it('deve criar um resultado de vitória válido', () => {
       const result = DuelResult.createVictory(user1, user2, 5, 2, 100);
-      
+
       expect(result.isDraw).toBe(false);
       expect(result.winnerScore).toBe(5);
       expect(result.loserScore).toBe(2);
@@ -19,7 +19,7 @@ describe('DuelResult Value Object', () => {
 
     it('deve criar um empate válido', () => {
       const result = DuelResult.createDraw(user1, user2, 3);
-      
+
       expect(result.isDraw).toBe(true);
       expect(result.winnerId).toBeNull();
       expect(result.winnerScore).toBe(3);
@@ -27,15 +27,15 @@ describe('DuelResult Value Object', () => {
     });
 
     it('deve lançar erro se o vencedor não tiver mais pontos que o perdedor', () => {
-      expect(() => 
-        DuelResult.createVictory(user1, user2, 2, 2, 50)
-      ).toThrow('Pontuação do vencedor deve ser maior que a do perdedor');
+      expect(() => DuelResult.createVictory(user1, user2, 2, 2, 50)).toThrow(
+        'Pontuação do vencedor deve ser maior que a do perdedor'
+      );
     });
 
     it('deve lançar erro para pontuações negativas', () => {
-      expect(() => 
-        DuelResult.createVictory(user1, user2, -1, 2, 50)
-      ).toThrow('Pontuações não podem ser negativas');
+      expect(() => DuelResult.createVictory(user1, user2, -1, 2, 50)).toThrow(
+        'Pontuações não podem ser negativas'
+      );
     });
   });
 
@@ -58,7 +58,9 @@ describe('DuelResult Value Object', () => {
 
     it('deve lançar erro se o jogador consultado não participou do duelo', () => {
       const result = DuelResult.createVictory(user1, user2, 3, 1, 50);
-      expect(() => result.getOutcomeForPlayer(stranger)).toThrow('Player não participou deste duelo');
+      expect(() => result.getOutcomeForPlayer(stranger)).toThrow(
+        'Player não participou deste duelo'
+      );
     });
   });
 
@@ -76,7 +78,7 @@ describe('DuelResult Value Object', () => {
         winnerScore: 2,
         loserScore: 0,
         isDraw: false,
-        scoreDifference: 2
+        scoreDifference: 2,
       });
     });
 

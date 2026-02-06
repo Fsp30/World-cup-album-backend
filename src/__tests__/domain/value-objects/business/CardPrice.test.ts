@@ -16,8 +16,12 @@ describe('CardPrice Value Object', () => {
     });
 
     it('deve lançar erro se o preço for zero ou negativo', () => {
-      expect(() => CardPrice.create(0)).toThrow('Preço deve ser maior que zero');
-      expect(() => CardPrice.create(-50)).toThrow('Preço deve ser maior que zero');
+      expect(() => CardPrice.create(0)).toThrow(
+        'Preço deve ser maior que zero'
+      );
+      expect(() => CardPrice.create(-50)).toThrow(
+        'Preço deve ser maior que zero'
+      );
     });
   });
 
@@ -27,32 +31,38 @@ describe('CardPrice Value Object', () => {
       const discounted = price.applyDiscount(20);
 
       expect(discounted.credits.amount).toBe(80);
-      expect(price.credits.amount).toBe(100); 
+      expect(price.credits.amount).toBe(100);
     });
 
     it('deve garantir que o preço com desconto seja no mínimo 1 crédito', () => {
       const price = CardPrice.create(10);
-      const discounted = price.applyDiscount(99); 
-      
+      const discounted = price.applyDiscount(99);
+
       expect(discounted.credits.amount).toBe(1);
     });
 
     it('deve lançar erro para porcentagens de desconto inválidas', () => {
       const price = CardPrice.create(100);
-      expect(() => price.applyDiscount(-1)).toThrow('Desconto deve estar entre 0 e 100');
-      expect(() => price.applyDiscount(101)).toThrow('Desconto deve estar entre 0 e 100');
+      expect(() => price.applyDiscount(-1)).toThrow(
+        'Desconto deve estar entre 0 e 100'
+      );
+      expect(() => price.applyDiscount(101)).toThrow(
+        'Desconto deve estar entre 0 e 100'
+      );
     });
 
     it('deve multiplicar o preço por um fator corretamente', () => {
       const price = CardPrice.create(100);
-      const multiplied = price.multiply(1.5); 
+      const multiplied = price.multiply(1.5);
 
       expect(multiplied.credits.amount).toBe(150);
     });
 
     it('deve lançar erro se o fator de multiplicação for zero ou negativo', () => {
       const price = CardPrice.create(100);
-      expect(() => price.multiply(0)).toThrow('Fator multiplicador deve ser maior que zero');
+      expect(() => price.multiply(0)).toThrow(
+        'Fator multiplicador deve ser maior que zero'
+      );
     });
   });
 
@@ -66,7 +76,7 @@ describe('CardPrice Value Object', () => {
     it('deve comparar igualdade e magnitude corretamente', () => {
       const cheap = CardPrice.create(10);
       const expensive = CardPrice.create(100);
-      
+
       expect(cheap.equals(CardPrice.create(10))).toBe(true);
       expect(expensive.isGreaterThan(cheap)).toBe(true);
     });

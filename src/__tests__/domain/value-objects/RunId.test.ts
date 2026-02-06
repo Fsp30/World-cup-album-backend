@@ -5,7 +5,7 @@ import {
   PackId,
   TeamId,
   TradeId,
-  UserId
+  UserId,
 } from '@/domain/value-objects';
 import { runIdBaseTests } from '../../../utils/tests/IdBaseUtils';
 import { SaleId } from '@/domain/value-objects/SaleId';

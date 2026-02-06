@@ -16,7 +16,9 @@ describe('PlayerPosition Value Object', () => {
     });
 
     it('deve lançar erro para posição inválida', () => {
-      expect(() => PlayerPosition.fromString('XYZ')).toThrow('Posição inválida: XYZ');
+      expect(() => PlayerPosition.fromString('XYZ')).toThrow(
+        'Posição inválida: XYZ'
+      );
     });
   });
 
@@ -72,7 +74,7 @@ describe('PlayerPosition Value Object', () => {
       expect(pos.toJSON()).toEqual({
         position: 'RW',
         name: 'Ponta Direita',
-        type: 'ATK'
+        type: 'ATK',
       });
     });
   });

@@ -59,7 +59,7 @@ export class Credits {
   toJSON() {
     return {
       amount: this.amount,
-      formatted: this.format(),
+      formatted: this.format()
     };
   }
 }

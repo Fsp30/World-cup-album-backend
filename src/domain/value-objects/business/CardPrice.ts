@@ -8,8 +8,11 @@ export class CardPrice {
   }
 
     validate(){
-        if(this.credits.amount <= 0){
+        if(this.credits.amount == 0){
             throw new Error("Preço deve ser maior que zero");
+        }
+        if(this.credits.amount < 0){
+            throw new Error("Créditos não podem ser negativos");
         }
         if (!Number.isInteger(this.credits.amount)) {
             throw new Error('Créditos devem ser um número inteiro');

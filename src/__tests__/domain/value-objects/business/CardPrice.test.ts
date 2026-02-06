@@ -1,6 +1,5 @@
+import { CardPrice, Credits } from '@/domain/value-objects';
 import { describe, it, expect } from '@jest/globals';
-// import { CardPrice } from '@/domain/value-objects/CardPrice';
-// import { Credits } from '@/domain/value-objects/Credits';
 
 describe('CardPrice Value Object', () => {
   describe('Criação e Validação', () => {
@@ -9,11 +8,13 @@ describe('CardPrice Value Object', () => {
       expect(price.credits.amount).toBe(100);
     });
 
+    
     it('deve criar a partir de uma instância de Credits', () => {
       const credits = Credits.create(500);
       const price = CardPrice.fromCredits(credits);
       expect(price.credits.equals(credits)).toBe(true);
     });
+    
 
     it('deve lançar erro se o preço for zero ou negativo', () => {
       expect(() => CardPrice.create(0)).toThrow(

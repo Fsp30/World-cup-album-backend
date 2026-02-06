@@ -8,12 +8,15 @@ export class CardPrice {
   }
 
     validate(){
-        if(this.credits.amount < 0){
-            throw new Error("");
+        if(this.credits.amount <= 0){
+            throw new Error("Preço deve ser maior que zero");
+        }
+        if (!Number.isInteger(this.credits.amount)) {
+            throw new Error('Créditos devem ser um número inteiro');
         }
     }
 
-    static create(amount: number): CardPrice{
+    static create(amount: number): CardPrice{ 
         const price: Credits = Credits.create(amount);
 
         return new CardPrice(price);
@@ -21,7 +24,7 @@ export class CardPrice {
 
     applyDiscount(percentage:number): CardPrice{
         if(percentage > 100 || percentage < 0){
-            throw new Error("");
+            throw new Error("Desconto deve estar entre 0 e 100");
         }
         const discount = (100 - percentage)/100;
         const newCredit = Credits.create(this.credits.amount * discount);
@@ -31,7 +34,7 @@ export class CardPrice {
     
     multiply(mult: number):CardPrice{
         if(mult <= 0){
-            throw new Error("");
+            throw new Error("Fator multiplicador deve ser maior que zero");
         }
 
         const newCredit = Credits.create(this.credits.amount * mult);
@@ -43,15 +46,15 @@ export class CardPrice {
         return this.credits === other.credits;
     }
 
-    isGreatThan(other:CardPrice):boolean{
+    isGreaterThan(other:CardPrice):boolean{
         return this.credits > other.credits;
     }
 
     format(): string{
-        return `${this.credits.amount.toLocaleString('pt-BR')}`;
+        return `${this.credits.amount.toLocaleString('pt-BR')} créditos`;
     }
 
-    fromCredits(credits: Credits): CardPrice{
+    static fromCredits(credits: Credits): CardPrice{
         return CardPrice.create(credits.amount);
     }
 

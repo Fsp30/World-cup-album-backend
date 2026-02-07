@@ -49,4 +49,14 @@ export class CardRarity {
     isMoreRateThan(other: CardRarity): boolean {
         return CardRarity.DROP_RATES[this.level] > CardRarity.DROP_RATES[other.level];
     }
+
+    toString():string {
+        return `${this.level}`;
+    }
+
+    toJSON() {
+        return {
+            level: this.level,
+        };
+    }
 }

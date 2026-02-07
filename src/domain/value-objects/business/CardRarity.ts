@@ -7,5 +7,12 @@ export enum RarityLevel {
 }
 
 export class CardRarity {
+    private static readonly DROP_RATES: Record<RarityLevel, number> = {
+        [RarityLevel.COMMON]:
+        [RarityLevel.UNCOMMON]:
+        [RarityLevel.RARE]:
+        [RarityLevel.EPIC]:
+        [RarityLevel.LEGENDARY]:
+    }
 
 }

@@ -66,7 +66,7 @@ export class CardRarity {
     }
 
     isMoreRareThan(other: CardRarity): boolean {
-        return CardRarity.DROP_RATES[this.level] > CardRarity.DROP_RATES[other.level];
+        return this.getDropRate() < other.getDropRate();
     }
 
     equals(other: CardRarity): boolean{

@@ -37,4 +37,8 @@ export class CardRarity {
         if(Object.values(RarityLevel).includes(rarityStatus)) return new CardRarity(rarityStatus);
         throw new Error("");
     }
+
+    getDropRate(): number{
+        return CardRarity.DROP_RATES[this.level];
+    }
 }

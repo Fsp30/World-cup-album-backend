@@ -26,19 +26,16 @@ export class CardPrice {
     }
 
     applyDiscount(percentage:number): CardPrice{
-        if(percentage > 100 || percentage < 0){
-            throw new Error("Desconto deve estar entre 0 e 100");
-        }
+        if(percentage > 100 || percentage < 0) throw new Error("Desconto deve estar entre 0 e 100");
         const discount = (100 - percentage)/100;
-        const newCredit = Credits.create(this.credits.amount * discount);
-
-        return new CardPrice(newCredit);
+        const newPrice = this.credits.amount * discount;
+        
+        if(newPrice < 1) return new CardPrice(Credits.create(1));
+        return new CardPrice(Credits.create(newPrice));
     }
     
     multiply(mult: number):CardPrice{
-        if(mult <= 0){
-            throw new Error("Fator multiplicador deve ser maior que zero");
-        }
+        if(mult <= 0)throw new Error("Fator multiplicador deve ser maior que zero");
 
         const newCredit = Credits.create(this.credits.amount * mult);
 

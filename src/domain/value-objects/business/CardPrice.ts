@@ -43,7 +43,7 @@ export class CardPrice {
     }
 
     equals(other: CardPrice):boolean{
-        return this.credits === other.credits;
+        return this.credits.amount === other.credits.amount;
     }
 
     isGreaterThan(other:CardPrice):boolean{

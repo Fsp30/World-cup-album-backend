@@ -54,7 +54,7 @@ export class CardRarity {
         const rarityStatus = level.toUpperCase() as RarityLevel;
 
         if(Object.values(RarityLevel).includes(rarityStatus)) return new CardRarity(rarityStatus);
-        throw new Error("");
+        throw new Error(`Raridade inválida: ${level}`);
     }
 
     getDropRate(): number{

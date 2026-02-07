@@ -41,4 +41,8 @@ export class CardRarity {
     getDropRate(): number{
         return CardRarity.DROP_RATES[this.level];
     }
+
+    getSaleValue(): number{
+        return CardRarity.SALE_VALUES[this.level];
+    }
 }

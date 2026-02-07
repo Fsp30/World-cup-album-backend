@@ -61,6 +61,10 @@ export class CardRarity {
         return CardRarity.DROP_RATES[this.level] > CardRarity.DROP_RATES[other.level];
     }
 
+    equals(other: CardRarity): boolean{
+        return this.level === other.level;
+    }
+
     toString():string {
         return `${this.level}`;
     }

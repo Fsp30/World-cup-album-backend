@@ -8,19 +8,19 @@ export enum RarityLevel {
 
 export class CardRarity {
     private static readonly DROP_RATES: Record<RarityLevel, number> = {
-        [RarityLevel.COMMON]: 0, // 50%
-        [RarityLevel.UNCOMMON]: 0.5, // 30%
-        [RarityLevel.RARE]: 0.8, // 15%
-        [RarityLevel.EPIC]: 0.95, // 4,5%
-        [RarityLevel.LEGENDARY]: 0.995 //0,5%
+        [RarityLevel.COMMON]: 50, // 50%
+        [RarityLevel.UNCOMMON]: 30, // 30%
+        [RarityLevel.RARE]: 15, // 15%
+        [RarityLevel.EPIC]: 4 ,// 4%
+        [RarityLevel.LEGENDARY]: 1, //1%
     }
 
     private static readonly SALE_VALUES: Record<RarityLevel, number> = {
-        [RarityLevel.COMMON]: 1,
-        [RarityLevel.UNCOMMON]: 2,
-        [RarityLevel.RARE]: 3,
-        [RarityLevel.EPIC]: 4,
-        [RarityLevel.LEGENDARY]: 5,
+        [RarityLevel.COMMON]: 10,
+        [RarityLevel.UNCOMMON]: 50,
+        [RarityLevel.RARE]: 500,
+        [RarityLevel.EPIC]: 800,
+        [RarityLevel.LEGENDARY]: 5000,
     }
 
     private constructor(
@@ -32,13 +32,21 @@ export class CardRarity {
     }
 
     static random(): CardRarity{
-        const drop: number = Math.random();
+        const drop: number = Math.random() * 100;
+
+        const common = CardRarity.DROP_RATES[RarityLevel.COMMON];
+        const uncommon = common + CardRarity.DROP_RATES[RarityLevel.UNCOMMON];
+        const rare = uncommon + CardRarity.DROP_RATES[RarityLevel.RARE];
+        const epic = rare + CardRarity.DROP_RATES[RarityLevel.EPIC];
+        const legendary = epic + CardRarity.DROP_RATES[RarityLevel.LEGENDARY];
+        if(legendary != 100) throw new Error("faixas de drop não completam 100%");
         
-        if(CardRarity.DROP_RATES[RarityLevel.COMMON] <= drop && drop < CardRarity.DROP_RATES[RarityLevel.UNCOMMON])     return new CardRarity(RarityLevel.COMMON);
-        if(CardRarity.DROP_RATES[RarityLevel.UNCOMMON] <= drop && drop < CardRarity.DROP_RATES[RarityLevel.UNCOMMON])   return new CardRarity(RarityLevel.UNCOMMON);
-        if(CardRarity.DROP_RATES[RarityLevel.RARE] <= drop && drop < CardRarity.DROP_RATES[RarityLevel.UNCOMMON])       return new CardRarity(RarityLevel.RARE);
-        if(CardRarity.DROP_RATES[RarityLevel.EPIC] <= drop && drop < CardRarity.DROP_RATES[RarityLevel.UNCOMMON])       return new CardRarity(RarityLevel.EPIC);
-        if(CardRarity.DROP_RATES[RarityLevel.LEGENDARY] <= drop && drop < 1)                                            return new CardRarity(RarityLevel.LEGENDARY);
+        if(drop <= common)                      return new CardRarity(RarityLevel.COMMON);
+        if(common < drop && drop <= uncommon)   return new CardRarity(RarityLevel.UNCOMMON);
+        if(uncommon < drop && drop <= rare)     return new CardRarity(RarityLevel.RARE);
+        if(rare < drop && drop <= epic)         return new CardRarity(RarityLevel.EPIC);
+        if(epic < drop && drop <= legendary)    return new CardRarity(RarityLevel.LEGENDARY);
+
         throw new Error(`Número gerado ${drop} não se encaixa nas faixas de drop`);
     }
 
@@ -72,6 +80,8 @@ export class CardRarity {
     toJSON() {
         return {
             level: this.level,
+            dropRate: this.getDropRate(),
+            saleValue: this.getSaleValue(),
         };
     }
 }

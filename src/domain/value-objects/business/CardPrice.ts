@@ -20,9 +20,9 @@ export class CardPrice {
     }
 
     static create(amount: number): CardPrice{ 
-        const price: Credits = Credits.create(amount);
+        if(amount <= 0 ) throw new Error("Preço deve ser maior que zero");
 
-        return new CardPrice(price);
+        return new CardPrice(Credits.create(amount));
     }
 
     applyDiscount(percentage:number): CardPrice{

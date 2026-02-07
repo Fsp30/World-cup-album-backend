@@ -1,5 +1,5 @@
+import { CardRarity } from '@/domain/value-objects';
 import { describe, it, expect, jest } from '@jest/globals';
-// import { CardRarity, RarityLevel } from '@/domain/value-objects/CardRarity';
 
 describe('CardRarity Value Object', () => {
   describe('Criação e Atributos', () => {

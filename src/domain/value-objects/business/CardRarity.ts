@@ -23,4 +23,11 @@ export class CardRarity {
         [RarityLevel.LEGENDARY]: 5,
     }
 
+    private constructor(
+        public readonly level: RarityLevel
+    ){}
+
+    static create(level: RarityLevel): CardRarity {
+        return new CardRarity(level);
+    }
 }

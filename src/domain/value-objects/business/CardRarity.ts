@@ -31,7 +31,7 @@ export class CardRarity {
         return new CardRarity(level);
     }
 
-    fromString(level:string): CardRarity {
+    static fromString(level:string): CardRarity {
         const rarityStatus = level.toUpperCase() as RarityLevel;
 
         if(Object.values(RarityLevel).includes(rarityStatus)) return new CardRarity(rarityStatus);

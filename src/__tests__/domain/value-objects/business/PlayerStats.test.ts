@@ -10,12 +10,18 @@ describe('PlayerStats Value Object', () => {
     });
 
     it('deve lançar erro se qualquer estatística for menor que 1 ou maior que 99', () => {
-      expect(() => PlayerStats.create(100, 80, 80, 80, 80, 80, 80)).toThrow('Estatísticas devem estar entre 1 e 99');
-      expect(() => PlayerStats.create(0, 80, 80, 80, 80, 80, 80)).toThrow('Estatísticas devem estar entre 1 e 99');
+      expect(() => PlayerStats.create(100, 80, 80, 80, 80, 80, 80)).toThrow(
+        'Estatísticas devem estar entre 1 e 99'
+      );
+      expect(() => PlayerStats.create(0, 80, 80, 80, 80, 80, 80)).toThrow(
+        'Estatísticas devem estar entre 1 e 99'
+      );
     });
 
     it('deve lançar erro se as estatísticas não forem números inteiros', () => {
-      expect(() => PlayerStats.create(80.5, 80, 80, 80, 80, 80, 80)).toThrow('Estatísticas devem ser números inteiros');
+      expect(() => PlayerStats.create(80.5, 80, 80, 80, 80, 80, 80)).toThrow(
+        'Estatísticas devem ser números inteiros'
+      );
     });
   });
 
@@ -50,15 +56,22 @@ describe('PlayerStats Value Object', () => {
     });
 
     it('deve garantir que as stats geradas por random respeitam a variância', () => {
-      jest.spyOn(Math, 'random').mockReturnValue(0.5); 
+      jest.spyOn(Math, 'random').mockReturnValue(0.5);
       const stats = PlayerStats.random(80, 80);
-      
-      const individualStats = [stats.pace, stats.shooting, stats.passing, stats.dribbling, stats.defending, stats.physical];
-      individualStats.forEach(s => {
+
+      const individualStats = [
+        stats.pace,
+        stats.shooting,
+        stats.passing,
+        stats.dribbling,
+        stats.defending,
+        stats.physical,
+      ];
+      individualStats.forEach((s) => {
         expect(s).toBeGreaterThanOrEqual(70);
         expect(s).toBeLessThanOrEqual(90);
       });
-      
+
       jest.restoreAllMocks();
     });
   });
@@ -67,7 +80,7 @@ describe('PlayerStats Value Object', () => {
     it('deve comparar se um jogador é melhor que outro pelo overall', () => {
       const p1 = PlayerStats.create(85, 80, 80, 80, 80, 80, 80);
       const p2 = PlayerStats.create(80, 90, 90, 90, 90, 90, 90);
-      
+
       expect(p1.isBetterThan(p2)).toBe(true);
     });
 

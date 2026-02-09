@@ -1,5 +1,5 @@
+import { Credits } from '@/domain/value-objects';
 import { describe, it, expect } from '@jest/globals';
-// import { Credits } from '@/domain/value-objects/Credits';
 
 describe('Credits Value Object', () => {
   describe('Criação e Validação', () => {
@@ -14,12 +14,18 @@ describe('Credits Value Object', () => {
     });
 
     it('deve lançar erro para valores negativos', () => {
-      expect(() => Credits.create(-10)).toThrow('Créditos não podem ser negativos');
+      expect(() => Credits.create(-10)).toThrow(
+        'Créditos não podem ser negativos'
+      );
     });
 
     it('deve lançar erro para números não inteiros ou infinitos', () => {
-      expect(() => Credits.create(10.5)).toThrow('Créditos devem ser um número inteiro');
-      expect(() => Credits.create(Infinity)).toThrow('Créditos devem ser um número finito');
+      expect(() => Credits.create(10.5)).toThrow(
+        'Créditos devem ser um número inteiro'
+      );
+      expect(() => Credits.create(Infinity)).toThrow(
+        'Créditos devem ser um número finito'
+      );
     });
   });
 
@@ -30,7 +36,7 @@ describe('Credits Value Object', () => {
       const result = c1.add(c2);
 
       expect(result.amount).toBe(80);
-      expect(c1.amount).toBe(50); 
+      expect(c1.amount).toBe(50);
     });
 
     it('deve subtrair créditos corretamente', () => {
@@ -44,8 +50,10 @@ describe('Credits Value Object', () => {
     it('deve lançar erro ao subtrair mais do que o saldo disponível', () => {
       const wallet = Credits.create(20);
       const cost = Credits.create(50);
-      
-      expect(() => wallet.subtract(cost)).toThrow('Créditos insuficientes para esta operação');
+
+      expect(() => wallet.subtract(cost)).toThrow(
+        'Créditos insuficientes para esta operação'
+      );
     });
   });
 
@@ -77,7 +85,7 @@ describe('Credits Value Object', () => {
       const credits = Credits.create(500);
       expect(credits.toJSON()).toEqual({
         amount: 500,
-        formatted: '500 créditos'
+        formatted: '500 créditos',
       });
     });
   });

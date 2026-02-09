@@ -7,7 +7,15 @@ export class Credits {
     if (this.amount < 0) {
       throw new Error('Créditos não podem ser negativos');
     }
+
+    if (!Number.isFinite(this.amount)) {
+      throw new Error('Créditos devem ser um número finito');
+    }
+    if (!Number.isInteger(this.amount)) {
+      throw new Error('Créditos devem ser um número inteiro');
+    }
   }
+
 
   static create(amount: number): Credits {
     return new Credits(amount);
@@ -15,17 +23,18 @@ export class Credits {
 
   add(credits: Credits): Credits {
     if (credits.amount < 0) {
-      throw new Error('Créditos não podem ser negativos');
+      throw new Error('Créditos insuficientes para esta operação');
     }
 
     return new Credits(this.amount + credits.amount);
   }
 
   subtract(credits: Credits): Credits {
-    if (credits.amount < 0) {
-      throw new Error('Créditos não podem ser negativos');
-    }
+ 
 
+    if (credits.amount > this.amount) {
+      throw new Error('Créditos insuficientes para esta operação');
+    }
     return new Credits(this.amount - credits.amount);
   }
 
@@ -38,7 +47,7 @@ export class Credits {
   }
 
   isGreaterThan(other: Credits): boolean {
-    return this.amount < other.amount;
+    return this.amount > other.amount;
   }
 
   format(): string {

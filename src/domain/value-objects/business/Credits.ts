@@ -7,6 +7,7 @@ export class Credits {
     if (this.amount < 0) {
       throw new Error('Créditos não podem ser negativos');
     }
+
     if (!Number.isFinite(this.amount)) {
       throw new Error('Créditos devem ser um número finito');
     }
@@ -15,7 +16,8 @@ export class Credits {
     }
   }
 
-  static create(amount: number = 0): Credits {
+
+  static create(amount: number): Credits {
     return new Credits(amount);
   }
 
@@ -23,14 +25,14 @@ export class Credits {
     if (credits.amount < 0) {
       throw new Error('Créditos insuficientes para esta operação');
     }
+
     return new Credits(this.amount + credits.amount);
   }
 
   subtract(credits: Credits): Credits {
-    if (credits.amount < 0) {
-      throw new Error('Créditos não podem ser negativos');
-    }
-    if (credits.amount >= this.amount) {
+ 
+
+    if (credits.amount > this.amount) {
       throw new Error('Créditos insuficientes para esta operação');
     }
     return new Credits(this.amount - credits.amount);
@@ -58,8 +60,8 @@ export class Credits {
 
   toJSON() {
     return {
+      formated: this.format(),
       amount: this.amount,
-      formatted: this.format()
     };
   }
 }

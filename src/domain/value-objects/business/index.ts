@@ -2,4 +2,5 @@ export * from './DailyStreak';
 export * from './MissionProgress';
 export * from './TradeStatus';
 export * from './Credits';
-export * from './DuelResult';
+export * from './CardPrice';
+export * from './CardRarity';

@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
-// import { DuelResult, DuelOutcome } from '@/domain/value-objects/DuelResult';
-// import { UserId } from '@/domain/value-objects/UserId';
+import { DuelResult, DuelOutcome } from '@/domain/value-objects/business/DuelResult';
+import { UserId } from '@/domain/value-objects/UserId';
 
 describe('DuelResult Value Object', () => {
   const user1 = UserId.create();
@@ -33,7 +33,7 @@ describe('DuelResult Value Object', () => {
     });
 
     it('deve lançar erro para pontuações negativas', () => {
-      expect(() => DuelResult.createVictory(user1, user2, -1, 2, 50)).toThrow(
+      expect(() => DuelResult.createVictory(user1, user2, -1, -2, 50)).toThrow(
         'Pontuações não podem ser negativas'
       );
     });
